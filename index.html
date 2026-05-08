@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Uso - RPA Gestión de Pedidos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .print-break { page-break-inside: avoid; }
+        
+        /* Custom Colors based on request */
+        .bg-brand-green { background-color: #C0D22E; }
+        .text-brand-green { color: #C0D22E; }
+        .border-brand-green { border-color: #C0D22E; }
+        
+        .bg-brand-gray { background-color: #6D6E71; }
+        .text-brand-gray { color: #6D6E71; }
+        .border-brand-gray { border-color: #6D6E71; }
+
+        @media print {
+            .no-print { display: none; }
+            body { background-color: white; }
+            .shadow-lg { box-shadow: none; border: 1px solid #e5e7eb; }
+        }
+    </style>
+</head>
+<body class="bg-white text-[#6D6E71]">
+
+    <!-- Header / Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-50 border-b border-[#C0D22E]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-[#C0D22E] text-white p-2 rounded-lg shadow-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                    </svg>
+                </div>
+                <h1 class="text-xl font-bold text-[#6D6E71] tracking-tight">Manual de Uso RPA - Alianzas</h1>
+            </div>
+            <button onclick="window.print()" class="no-print flex items-center space-x-2 text-sm font-medium text-[#6D6E71] hover:text-[#C0D22E] transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                </svg>
+                <span>Imprimir / PDF</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+
+        <!-- Introduction Section -->
+        <section class="bg-white rounded-xl shadow-lg p-8 border-l-8 border-[#C0D22E]">
+            <h2 class="text-2xl font-bold text-[#6D6E71] mb-4">Activación de la Automatización</h2>
+            <p class="text-lg text-[#6D6E71] mb-6">
+                El RPA se activa automáticamente mediante la recepción de un correo electrónico. Para garantizar la ejecución correcta, el correo debe cumplir con las siguientes condiciones:
+            </p>
+            <div class="flex flex-col md:flex-row gap-6">
+                <div class="flex-1 bg-gray-50 rounded-lg p-5 flex items-start space-x-4 border border-gray-100">
+                    <div class="bg-white p-2 rounded-full shadow-sm text-[#C0D22E]">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-[#6D6E71]">Destinatario</h3>
+                        <p class="text-[#6D6E71] font-mono text-sm mt-1">rpapedidos@haceb.com</p>
+                    </div>
+                </div>
+                <div class="flex-1 bg-gray-50 rounded-lg p-5 flex items-start space-x-4 border border-gray-100">
+                    <div class="bg-white p-2 rounded-full shadow-sm text-[#C0D22E]">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-[#6D6E71]">Adjunto Requerido</h3>
+                        <p class="text-[#6D6E71] text-sm mt-1">Archivo formato <strong>.PDF</strong> con datos del pedido.</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8">
+                
+                </div>
+            </div>
+            
+        </section>
+        
+
+        <!-- Fields Extraction Section -->
+        <section>
+            <div class="mb-6 border-b border-[#C0D22E] pb-4">
+                <h2 class="text-3xl font-bold text-[#6D6E71]">Extracción de Campos</h2>
+                <p class="text-[#6D6E71] mt-2 opacity-80">Guía para la identificación de datos según el formato del archivo adjunto.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Blue Format -> Ahora Green Format -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col h-full print-break">
+                    <div class="bg-[#C0D22E] p-4">
+                        <!-- Usamos texto blanco con sombra suave para contraste o gris oscuro si prefieres -->
+                        <h3 class="text-white font-bold text-lg flex items-center drop-shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            Formato AZUL
+                        </h3>
+                    </div>
+                    <div class="p-6 space-y-4 flex-grow text-sm">
+                        <ul class="space-y-3">
+                            <li class="flex border-b pb-2 border-gray-100"><strong class="w-1/3 text-[#C0D22E]">Asunto del correo:</strong> <span class="w-2/3 text-[#6D6E71]">Debe contener en el asunto la palabra "NUEVA PO WH" + el número de la PO.</span></li>
+                            <li class="flex border-b pb-2 border-gray-100"><strong class="w-1/3 text-[#C0D22E]">BillTo:</strong> <span class="w-2/3 text-[#6D6E71]">Razón social (archivo Alianzas).</span></li>
+                            <li class="flex border-b pb-2 border-gray-100"><strong class="w-1/3 text-[#C0D22E]">No. Orden:</strong> <span class="w-2/3 text-[#6D6E71]">Número de pedido del cliente.</span></li>
+                            <li class="flex border-b pb-2 border-gray-100"><strong class="w-1/3 text-[#C0D22E]">Entrega:</strong> <span class="w-2/3 text-[#6D6E71]">Nombre del mes completo (Ej. ENERO).</span></li>
+                            <li class="flex border-b pb-2 border-gray-100"><strong class="w-1/3 text-[#C0D22E]">Consignatario:</strong> <span class="w-2/3 text-[#6D6E71]">Nombre del consignatario.</span></li>
+                            <li class="flex border-b pb-2 border-gray-100"><strong class="w-1/3 text-[#C0D22E]">Dirección:</strong> <span class="w-2/3 text-[#6D6E71]">Dirección de envío.</span></li>
+                            <li class="flex border-b pb-2 border-gray-100"><strong class="w-1/3 text-[#C0D22E]">Ciudad/País:</strong> <span class="w-2/3 text-[#6D6E71]">Complemento de dirección.</span></li>
+                            <li class="flex bg-lime-50 p-2 rounded"><strong class="w-1/3 text-[#C0D22E]">Materiales:</strong> <span class="w-2/3 text-[#6D6E71] font-bold">Debe existir en BD Alianzas para hacer match.</span></li>
+                            <li class="flex border-b pb-2 border-gray-100"><strong class="w-1/3 text-[#C0D22E]">Cantidad:</strong> <span class="w-2/3 text-[#6D6E71]">Requerido para el pedido.</span></li>
+                            <li class="flex border-b pb-2 border-gray-100"><strong class="w-1/3 text-[#C0D22E]">Unitario:</strong> <span class="w-2/3 text-[#6D6E71]">Valor unitario.</span></li>
+                            <li class="flex border-b pb-2 border-gray-100"><strong class="w-1/3 text-[#C0D22E]">Cód. Haceb:</strong> <span class="w-2/3 text-[#6D6E71] italic">Calculado (ver reglas).</span></li>
+                            <li class="flex border-b pb-2 border-gray-100"><strong class="w-1/3 text-[#C0D22E]">Total USD:</strong> <span class="w-2/3 text-[#6D6E71]">Precio definido en Dólares.</span></li>
+                            <li class="flex bg-lime-50 p-2 rounded"><strong class="w-1/3 text-[#C0D22E]">POO:</strong> <span class="w-2/3 text-[#6D6E71] font-bold">Puerto de envío.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- White Format -> Ahora Gray Format -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col h-full print-break">
+                    <div class="bg-[#6D6E71] p-4">
+                        <h3 class="text-white font-bold text-lg flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                            </svg>
+                            Formato BLANCO
+                        </h3>
+                    </div>
+                    <div class="p-6 space-y-4 flex-grow text-sm">
+                        <ul class="space-y-3">
+                            <li class="flex border-b pb-2 border-gray-100"><strong class="w-1/3 text-[#6D6E71]">Asunto del correo:</strong> <span class="w-2/3 text-[#6D6E71]">Debe contener la palabra "PO" + el número de PO y el MES (ENE,FEB,MAR...).</span></li>
+                            <li class="flex border-b pb-2 border-gray-100"><strong class="w-1/3 text-[#6D6E71]">BillTo:</strong> <span class="w-2/3 text-[#6D6E71]">Razón social (archivo Alianzas).</span></li>
+                            <li class="flex border-b pb-2 border-gray-100"><strong class="w-1/3 text-[#6D6E71]">No. Orden:</strong> <span class="w-2/3 text-[#6D6E71]">Número de pedido del cliente.</span></li>
+                            <li class="flex border-b pb-2 border-gray-100"><strong class="w-1/3 text-[#6D6E71]">Consignatario:</strong> <span class="w-2/3 text-[#6D6E71]">Nombre del consignatario.</span></li>
+                            <li class="flex border-b pb-2 border-gray-100"><strong class="w-1/3 text-[#6D6E71]">Dirección:</strong> <span class="w-2/3 text-[#6D6E71]">Dirección de envío.</span></li>
+                            <li class="flex border-b pb-2 border-gray-100"><strong class="w-1/3 text-[#6D6E71]">Ciudad/País:</strong> <span class="w-2/3 text-[#6D6E71]">Complemento de dirección.</span></li>
+                            <li class="flex bg-gray-100 p-2 rounded"><strong class="w-1/3 text-[#6D6E71]">Materiales:</strong> <span class="w-2/3 text-[#6D6E71] font-bold">Debe existir en BD Alianzas para hacer match.</span></li>
+                            <li class="flex border-b pb-2 border-gray-100"><strong class="w-1/3 text-[#6D6E71]">Cantidad:</strong> <span class="w-2/3 text-[#6D6E71]">Requerido para el pedido.</span></li>
+                            <li class="flex border-b pb-2 border-gray-100"><strong class="w-1/3 text-[#6D6E71]">Unitario:</strong> <span class="w-2/3 text-[#6D6E71]">Valor unitario.</span></li>
+                            <li class="flex border-b pb-2 border-gray-100"><strong class="w-1/3 text-[#6D6E71]">Cód. Haceb:</strong> <span class="w-2/3 text-[#6D6E71] italic">Calculado (ver reglas).</span></li>
+                            <li class="flex border-b pb-2 border-gray-100"><strong class="w-1/3 text-[#6D6E71]">Total USD:</strong> <span class="w-2/3 text-[#6D6E71]">Precio definido USD/COP.</span></li>
+                            <li class="flex bg-gray-100 p-2 rounded"><strong class="w-1/3 text-[#6D6E71]">POO:</strong> <span class="w-2/3 text-[#6D6E71] font-bold">Definido en BD Alianzas.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4 p-4 bg-[#C0D22E] bg-opacity-20 border-l-4 border-[#C0D22E] text-[#6D6E71] text-sm rounded-r-lg">
+                <strong>Nota Importante:</strong> Todos los campos deben ser diligenciados completamente en el origen, excepto el <strong>Código Haceb</strong>, el cual es un campo calculado automáticamente utilizando los insumos del archivo de Alianzas.
+            </div>
+        </section>
+        <!-- Fields Extraction Section -->
+        
+        <!-- Database Rules Section -->
+        <section class="bg-white rounded-xl shadow-lg p-8 print-break border border-gray-100">
+            <h2 class="text-2xl font-bold text-[#6D6E71] mb-6 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-[#C0D22E]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                </svg>
+                Base de Datos Alianzas
+            </h2>
+            <p class="mb-6 text-[#6D6E71]">
+                Este archivo es el insumo principal ("cerebro") del RPA. De él dependen las decisiones de la automatización.
+            </p>
+            
+            <div class="space-y-8">
+                <!-- Sheet 1 -->
+                <div class="border rounded-lg p-5 border-gray-200">
+                    <h3 class="text-lg font-bold text-[#6D6E71] mb-2">Hoja 1: BASE DE DATOS</h3>
+                    <p class="text-sm text-[#6D6E71] opacity-75 mb-4">Reglas de integridad estructural.</p>
+                    
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="md:w-1/2">
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-start text-red-500">
+                                    <svg class="h-5 w-5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    No modificar nombres de columnas.
+                                </li>
+                                <li class="flex items-start text-red-500">
+                                    <svg class="h-5 w-5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    No eliminar ni agregar columnas.
+                                </li>
+                                <li class="flex items-start text-red-500">
+                                    <svg class="h-5 w-5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    Asegurar que la información corresponda a los datos de cada cliente.
+                                </li>
+                                <li class="flex items-start text-red-500">
+                                    <svg class="h-5 w-5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    No cambiar el orden de las columnas.
+                                </li>
+                                <li class="flex items-start text-red-500">
+                                    <svg class="h-5 w-5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    No dejar campos en blanco.
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="md:w-1/2 bg-gray-50 rounded flex items-center justify-center h-32 border-2 border-dashed border-gray-300 relative group">
+                            <!-- Placeholder for Image 1 -->
+                            <div class="text-center">
+                                <span class="text-xs text-gray-500 font-medium mt-1 block"><img src="FormatoAlianzas1.png"> </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sheet 2 -->
+                <div class="border rounded-lg p-5 border-gray-200">
+                    <h3 class="text-lg font-bold text-[#6D6E71] mb-2">Hoja 2: LISTA WH</h3>
+                    <p class="text-sm text-[#6D6E71] opacity-75 mb-4">Mantenimiento de información temporal.</p>
+                    
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="md:w-1/2">
+                            <p class="text-sm text-[#6D6E71] mb-2">
+                                <strong>Actualización por "Q":</strong> El equipo funcional debe actualizar la información de los meses correspondientes a su precio cada trimestre (Q).
+                            </p>
+                            <div class="bg-red-50 text-red-800 text-xs p-3 rounded mt-2">
+                                <strong>Advertencia:</strong> El archivo solo debe contener la información que se utilizará durante el Q que se esté ejecutando.
+                            </div>
+                        </div>
+                        <div class="md:w-1/2 bg-gray-50 rounded flex items-center justify-center h-32 border-2 border-dashed border-gray-300">
+                             <!-- Placeholder for Image 2 -->
+                             <div class="text-center">
+                                <span class="text-xs text-gray-500 font-medium mt-1 block"><img src="FormatoAlianzas2.png"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-orange-50 p-4 rounded-lg border border-orange-200 text-sm text-orange-800 text-center">
+                    <strong>¡Atención!</strong> No usar filtros ni ocultar columnas en estos archivos. Esto causará fallos en la lectura del bot.
+                </div>
+            </div>
+        </section>
+
+        <!-- Logic & Validation Section -->
+        <section class="bg-[#6D6E71] text-white rounded-xl shadow-lg p-8 print-break">
+            <h2 class="text-2xl font-bold mb-6">Lógica de Validación del Proceso</h2>
+            
+            <div class="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-400 before:to-transparent">
+                
+                <!-- Step 1 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-gray-400 bg-gray-800 group-[.is-active]:bg-[#C0D22E] text-slate-300 group-[.is-active]:text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                        1
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-4 rounded border border-gray-500 shadow-md">
+                        <div class="flex items-center justify-between space-x-2 mb-1">
+                            <div class="font-bold text-[#6D6E71]">Recepción de Correo</div>
+                        </div>
+                        <div class="text-[#6D6E71] text-sm">
+                            El asunto deberá contener para el formato azul la palabra "NUEVA PO WH" y para el formato blanco deberá contener la palabra "PO", pero debe contener al menos un adjunto <strong>.pdf</strong>, el número de la <strong>PO</strong> y no debe contener caracteres especiales.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-gray-400 bg-gray-800 group-[.is-active]:bg-[#C0D22E] text-slate-300 group-[.is-active]:text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                        2
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-4 rounded border border-gray-500 shadow-md">
+                        <div class="flex items-center justify-between space-x-2 mb-1">
+                            <div class="font-bold text-[#6D6E71]">Cruce Asunto vs. PDF</div>
+                        </div>
+                        <div class="text-[#6D6E71] text-sm mb-2">
+                            Se valida que el número de PO (Purchase Order) en el asunto del correo sea idéntico al PO dentro del PDF.
+                        </div>
+                        <div class="bg-red-50 p-2 rounded text-xs text-red-800 border border-red-200">
+                            <strong>Fallo:</strong> Si no coinciden, se genera una Excepción de Negocio con su respectiva notificación.
+                        </div>
+                        <br>
+                        <!-- Placeholder for Validation Image -->
+                        <div class="rounded border border-gray-200 flex items-center justify-center">
+                            <img src="notificacion1.png">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-gray-400 bg-gray-800 group-[.is-active]:bg-[#C0D22E] text-slate-300 group-[.is-active]:text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                        3
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-4 rounded border border-gray-500 shadow-md">
+                        <div class="flex items-center justify-between space-x-2 mb-1">
+                            <div class="font-bold text-[#6D6E71]">Validación Duplicados</div>
+                        </div>
+                        <div class="text-[#6D6E71] text-sm mb-2">
+                            El bot verifica en SAP que la PO no haya sido creada anteriormente. Esto evita reprocesos y duplicidad en los pedidos.
+                        </div>
+                        <div class="bg-red-50 p-2 rounded text-xs text-red-800 border border-red-200">
+                            <strong>Fallo:</strong> Si la PO ya existe en SAP (VA02), se notifica al <strong>Equipo Back</strong> y al <strong>Equipo Alianzas</strong> indicando que dicha PO ya fue creada en la transacción VA02.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Exceptions Section -->
+        <section class="bg-white rounded-xl shadow-lg p-8 print-break border border-gray-100">
+            <h2 class="text-2xl font-bold text-[#6D6E71] mb-2 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                </svg>
+                Causas de Novedades / Excepciones
+            </h2>
+            <p class="text-[#6D6E71] text-sm mb-6 opacity-80">
+                Cuando el proceso detecta una condición inválida, genera una excepción de negocio y envía una notificación automática a los equipos correspondientes.
+            </p>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left border-collapse">
+                    <thead>
+                        <tr class="bg-[#6D6E71] text-white">
+                            <th class="px-4 py-3 rounded-tl-lg font-semibold">Causante</th>
+                            <th class="px-4 py-3 font-semibold">Descripción</th>
+                            <th class="px-4 py-3 font-semibold">Paso</th>
+                            <th class="px-4 py-3 rounded-tr-lg font-semibold">Notificados</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-4 py-3 font-medium text-red-600">Asunto incorrecto</td>
+                            <td class="px-4 py-3 text-[#6D6E71]">El asunto del correo no contiene la palabra clave requerida ("NUEVA PO WH" o "PO") o falta el número de PO.</td>
+                            <td class="px-4 py-3"><span class="bg-[#C0D22E] text-white text-xs font-bold px-2 py-1 rounded-full">RPA 1</span></td>
+                            <td class="px-4 py-3">
+                                <span class="inline-block bg-red-100 text-red-700 text-xs px-2 py-1 rounded italic">Sin notificación — no cumple parámetros de lectura</span>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-4 py-3 font-medium text-red-600">Sin adjunto PDF</td>
+                            <td class="px-4 py-3 text-[#6D6E71]">El correo no contiene ningún archivo adjunto en formato <strong>.pdf</strong>.</td>
+                            <td class="px-4 py-3"><span class="bg-[#C0D22E] text-white text-xs font-bold px-2 py-1 rounded-full">RPA 1</span></td>
+                            <td class="px-4 py-3 space-y-1">
+                                <span class="inline-block bg-red-100 text-red-700 text-xs px-2 py-1 rounded italic">Sin notificación — no cumple parámetros de lectura</span>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-4 py-3 font-medium text-red-600">Caracteres especiales</td>
+                            <td class="px-4 py-3 text-[#6D6E71]">El asunto del correo contiene caracteres especiales que impiden la lectura correcta del número de PO.</td>
+                            <td class="px-4 py-3"><span class="bg-[#C0D22E] text-white text-xs font-bold px-2 py-1 rounded-full">RPA 1</span></td>
+                            <td class="px-4 py-3">
+                                <span class="inline-block bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded">Equipo Soporte</span>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-4 py-3 font-medium text-red-600">PO no coincide</td>
+                            <td class="px-4 py-3 text-[#6D6E71]">El número de PO en el asunto del correo es diferente al número de PO dentro del archivo PDF adjunto.</td>
+                            <td class="px-4 py-3"><span class="bg-[#C0D22E] text-white text-xs font-bold px-2 py-1 rounded-full">RPA 1</span></td>
+                            <td class="px-4 py-3 space-y-1">
+                                <span class="inline-block bg-gray-100 text-[#6D6E71] text-xs px-2 py-1 rounded mr-1">Equipo Back</span>
+                                <span class="inline-block bg-gray-100 text-[#6D6E71] text-xs px-2 py-1 rounded mr-1">Equipo Alianzas</span>
+                                <span class="inline-block bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded">Equipo Soporte</span>
+                            </td>
+                        </tr>
+                        
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-4 py-3 font-medium text-red-600">PO duplicada en VA02</td>
+                            <td class="px-4 py-3 text-[#6D6E71]">En la PO se encuentra más de un número de pedido en la transacción <strong>VA02</strong>). Se notifica que el pedido se encuentra más de una vez y no se reprocesa.</td>
+                            <td class="px-4 py-3"><span class="bg-[#C0D22E] text-white text-xs font-bold px-2 py-1 rounded-full">RPA 1</span></td>
+                            <td class="px-4 py-3 space-y-1">
+                                <span class="inline-block bg-gray-100 text-[#6D6E71] text-xs px-2 py-1 rounded mr-1">Equipo Back</span>
+                                <span class="inline-block bg-gray-100 text-[#6D6E71] text-xs px-2 py-1 rounded mr-1">Equipo Alianzas</span>
+                                <span class="inline-block bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded">Equipo Soporte</span>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-4 py-3 font-medium text-red-600">PO ya existe</td>
+                            <td class="px-4 py-3 text-[#6D6E71]">La PO ya fue creada previamente en SAP (transacción <strong>VA02</strong>). Se notifica que el pedido ya existe y no se reprocesa.</td>
+                            <td class="px-4 py-3"><span class="bg-[#C0D22E] text-white text-xs font-bold px-2 py-1 rounded-full">RPA 1</span></td>
+                            <td class="px-4 py-3 space-y-1">
+                                <span class="inline-block bg-gray-100 text-[#6D6E71] text-xs px-2 py-1 rounded mr-1">Equipo Back</span>
+                                <span class="inline-block bg-gray-100 text-[#6D6E71] text-xs px-2 py-1 rounded mr-1">Equipo Alianzas</span>
+                                <span class="inline-block bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded">Equipo Soporte</span>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-4 py-3 font-medium text-red-600">Material sin información completa en el PDF.</td>
+                            <td class="px-4 py-3 text-[#6D6E71]">Uno o más materiales del PDF no tienen correspondencia (material, precio, código haceb) en la Base de Datos Alianzas. No es posible calcular el Código Haceb.</td>
+                            <td class="px-4 py-3"><span class="bg-[#C0D22E] text-white text-xs font-bold px-2 py-1 rounded-full">RPA 1</span></td>
+                            <td class="px-4 py-3 space-y-1">
+                                <span class="inline-block bg-gray-100 text-[#6D6E71] text-xs px-2 py-1 rounded mr-1">Equipo Back</span>
+                                <span class="inline-block bg-gray-100 text-[#6D6E71] text-xs px-2 py-1 rounded mr-1">Equipo Alianzas</span>
+                                <span class="inline-block bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded">Equipo Soporte</span>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-4 py-3 font-medium text-red-600">Error de precio unitario</td>
+                            <td class="px-4 py-3 text-[#6D6E71]">Se obtiene los precios de la PO y del insumo base de alianzas y los precios no coindicen o no existen en la base de alianzas, generando la notificación de error.</td>
+                            <td class="px-4 py-3"><span class="bg-[#C0D22E] text-white text-xs font-bold px-2 py-1 rounded-full">RPA 1</span></td>
+                            <td class="px-4 py-3 space-y-1">
+                                <span class="inline-block bg-gray-100 text-[#6D6E71] text-xs px-2 py-1 rounded mr-1">Equipo Back</span>
+                                <span class="inline-block bg-gray-100 text-[#6D6E71] text-xs px-2 py-1 rounded mr-1">Equipo Alianzas</span>
+                                <span class="inline-block bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded">Equipo Soporte</span>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-4 py-3 font-medium text-red-600">Número de Orden no se creó</td>
+                            <td class="px-4 py-3 text-[#6D6E71]">El pedido no se crea en SAP debido a error en la integración.</td>
+                            <td class="px-4 py-3"><span class="bg-[#C0D22E] text-white text-xs font-bold px-2 py-1 rounded-full">RPA 2</span></td>
+                            <td class="px-4 py-3 space-y-1">
+                                <span class="inline-block bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded">Equipo Soporte</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-6 p-4 bg-blue-50 border-l-4 border-blue-400 text-blue-800 text-sm rounded-r-lg">
+                <strong>Nota:</strong> En todos los casos de excepción el proceso se detiene. El equipo correspondiente debe corregir la información en origen y reenviar el correo para reiniciar el flujo.
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-[#C0D22E] mt-12 py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center text-[#6D6E71] text-sm">
+            <p>&copy; 2026 RPA Automation Team. Documentación interna.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
